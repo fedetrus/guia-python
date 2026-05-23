@@ -25,9 +25,8 @@
     #main-content { flex: 1; overflow: auto; }
     .content-wrap { max-width: 820px; margin: 0 auto; padding: 2rem 1.5rem; }
 
-    .sec { display: none; }
-    .sec.is-active { display: block; 
-                     animation: fadeIn 0.5s ease;}
+    #main-content .sec { display: none; }
+    #main-content .sec.is-active { display: block; animation: fadeIn 0.5s ease; }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -38,7 +37,7 @@
 
     .menu-list a { cursor: pointer; }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1023px) {
       .navbar.is-fixed-bottom { z-index: 201; }
       #aside {
         position: fixed; bottom: 52px; top: auto; right: 0;
@@ -65,6 +64,7 @@
       <span></span>
       <span></span>
       <span></span>
+      <span></span>
     </a>
   </div>
 </nav>
@@ -79,7 +79,7 @@
   <!-- ══════════════════════════════════════════
        MÓDULO 1 — TIPOS DE DATOS
   ══════════════════════════════════════════ -->
-  <div class="sec is-active" id="sec-tipos">
+  <div class="sec" id="sec-tipos">
     <p class="is-size-7 has-text-warning has-text-weight-semibold mb-1" style="letter-spacing:.08em;text-transform:uppercase">Módulo 01</p>
     <h1 class="title is-3">Tipos de datos</h1>
     <p class="subtitle is-6 mb-5">Python asigna el tipo automáticamente según el valor. Conocer los tipos evita errores al operar y al mostrar datos.</p>
@@ -141,7 +141,40 @@
     <div class="notification is-danger mt-3">
       <p><strong>⚠ Error común:</strong> Nunca sumes un <code>int</code> con un <code>str</code> directamente. <code>21 + "años"</code> lanza <code>TypeError</code>. Convertí primero.</p>
     </div>
-  </div>
+  
+  <hr>
+  <!-- Operadores matemáticos -->
+<p class="heading">Operadores matemáticos</p>
+<table class="table is-fullwidth is-striped mb-4">
+  <thead>
+    <tr><th>Operador</th><th>Operación</th><th>Ejemplo</th><th>Resultado</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>+</code></td><td>Suma</td><td><code>5 + 3</code></td><td><code>8</code></td></tr>
+    <tr><td><code>-</code></td><td>Resta</td><td><code>5 - 3</code></td><td><code>2</code></td></tr>
+    <tr><td><code>*</code></td><td>Multiplicación</td><td><code>5 * 3</code></td><td><code>15</code></td></tr>
+    <tr><td><code>/</code></td><td>División (siempre devuelve float)</td><td><code>10 / 3</code></td><td><code>3.333...</code></td></tr>
+    <tr><td><code>//</code></td><td>División entera (cociente)</td><td><code>10 // 3</code></td><td><code>3</code></td></tr>
+    <tr><td><code>%</code></td><td>Módulo (resto)</td><td><code>10 % 3</code></td><td><code>1</code></td></tr>
+    <tr><td><code>**</code></td><td>Potencia</td><td><code>2 ** 8</code></td><td><code>256</code></td></tr>
+  </tbody>
+</table>
+
+<pre><code>minutos = 130 // 60    # cociente  → 2
+segundos = 130 % 60   # resto     → 10
+print(f"{minutos} min y {segundos} seg")
+
+es_par = 8 % 2 == 0   # True si el resto es 0
+print(es_par)          # True
+
+area = 3.1416 * 5 ** 2  # potencia antes que multiplicación</code></pre>
+<pre class="is-output has-text-success mt-1 mb-5">&gt; 2 min y 10 seg
+&gt; True</pre>
+
+<div class="notification is-warning mb-5">
+  <p><strong>💡 Orden de operaciones:</strong> Python respeta el orden matemático — primero <code>**</code>, luego <code>* / // %</code>, luego <code>+ -</code>. Usá paréntesis para forzar el orden que necesitás.</p>
+</div>
+</div>
 
 
   <!-- ══════════════════════════════════════════
@@ -958,11 +991,12 @@ else:
       if (n) n.classList.remove('is-active');
     });
     document.getElementById('sec-' + id).classList.add('is-active');
+
     var nav = document.getElementById('nav-' + id);
     if (nav) nav.classList.add('is-active');
     window.scrollTo(0, 0);
     // Close mobile sidebar
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 1023) {
       document.getElementById('aside').classList.remove('is-open');
       document.getElementById('toggle-btn').classList.remove('is-active');
     }
@@ -971,7 +1005,7 @@ else:
   function toggleSidebar() {
     document.getElementById('toggle-btn').classList.toggle('is-active');
     var a = document.getElementById('aside');
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 1023) {
       a.classList.toggle('is-open');
     } else {
       a.classList.toggle('is-collapsed');
