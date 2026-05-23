@@ -14,3 +14,6 @@ Guía de referencia rápida para la materia, con ejemplos y ejercicios integrado
 
 ## Créditos
 Desarrollado por Federico Suárez — 2026
+
+## Licencia
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) — Federico Suárez
