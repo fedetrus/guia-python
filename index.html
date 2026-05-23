@@ -922,25 +922,19 @@ else:
 
     <!-- ASIDE -->
   <div id="aside">
-    <div class="aside-inner">
-      <aside class="menu">
-        <p class="menu-label">Módulos</p>
-        <ul class="menu-list">
-          <li><a id="nav-tipos"       onclick="show('tipos')">1 · Tipos de datos</a></li>
-          <li><a id="nav-cond"        onclick="show('cond')">2 · Condicionales</a></li>
-          <li><a id="nav-bucles"      onclick="show('bucles')">3 · Bucles</a></li>
-          <li><a id="nav-errores"     onclick="show('errores')">4 · Manejo de errores</a></li>
-          <li><a id="nav-estructuras" onclick="show('estructuras')">5 · Estructuras de datos</a></li>
-          <li><a id="nav-funciones"   onclick="show('funciones')">6 · Funciones</a></li>
-        </ul>
-        <p class="menu-label mt-4">Ejercicios integradores</p>
-        <ul class="menu-list">
-          <li><a id="nav-int1" onclick="show('int1')">⚡ Conversor de temperatura</a></li>
-          <li><a id="nav-int2" onclick="show('int2')">⚡ Contador de vocales</a></li>
-          <li><a id="nav-int3" onclick="show('int3')">⚡ Lista del supermercado</a></li>
-        </ul>
-      </aside>
-    </div>
+    <nav class="panel m-3">
+      <p class="panel-heading">Módulos</p>
+      <a class="panel-block is-active" onclick="show('tipos')">1 · Tipos de datos</a>
+      <a class="panel-block" onclick="show('cond')">2 · Condicionales</a>
+      <a class="panel-block" onclick="show('bucles')">3 · Bucles</a>
+      <a class="panel-block" onclick="show('errores')">4 · Manejo de errores</a>
+      <a class="panel-block" onclick="show('estructuras')">5 · Estructuras de datos</a>
+      <a class="panel-block" onclick="show('funciones')">6 · Funciones</a>
+      <p class="panel-heading">Integradores</p>
+      <a class="panel-block" onclick="show('int1')">⚡ Conversor de temperatura</a>
+      <a class="panel-block" onclick="show('int2')">⚡ Contador de vocales</a>
+      <a class="panel-block" onclick="show('int3')">⚡ Lista del supermercado</a>
+    </nav>
   </div>
 </div><!-- /is-flex -->
 
@@ -975,7 +969,7 @@ else:
   }
 
   // Init
-  document.getElementById('nav-tipos').classList.add('is-active');
+  show('tipos');
 </script>
 
 </body>
