@@ -769,6 +769,112 @@ print(calcular_factura(1000, iva=10)) # IVA 10%             → 1100.0</code></p
     </div>
   </div>
 
+  <!-- ══════════════════════════════════════════
+     MÓDULO 7 — LIBRERÍA RANDOM
+══════════════════════════════════════════ -->
+<div class="sec" id="sec-random">
+  <p class="is-size-7 has-text-warning has-text-weight-semibold mb-1" style="letter-spacing:.08em;text-transform:uppercase">Módulo 07</p>
+  <h1 class="title is-3">Librería random</h1>
+  <p class="subtitle is-6 mb-5">Python viene con módulos listos para usar. <code>random</code> genera valores aleatorios — útil para juegos, simulaciones y sorteos.</p>
+  <hr>
+
+  <p class="heading">Importar el módulo</p>
+  <pre><code>import random          # importás el módulo completo
+from random import randint  # importás solo lo que necesitás</code></pre>
+
+  <div class="notification is-info mb-5">
+    <p><strong>🔵 ¿Qué es import?</strong> Python no carga todo su contenido de una vez. Los módulos son archivos de funciones extra que activás con <code>import</code>. <code>random</code> ya viene instalado con Python — no necesitás instalar nada.</p>
+  </div>
+
+  <p class="heading">Métodos principales</p>
+  <table class="table is-fullwidth is-striped mb-5">
+    <thead>
+      <tr><th>Método</th><th>Qué hace</th><th>Ejemplo</th><th>Resultado posible</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>random.random()</code></td><td>Float entre 0.0 y 1.0</td><td><code>random.random()</code></td><td><code>0.7342</code></td></tr>
+      <tr><td><code>random.randint(a, b)</code></td><td>Entero entre a y b, <strong>ambos incluidos</strong></td><td><code>random.randint(1, 6)</code></td><td><code>4</code></td></tr>
+      <tr><td><code>random.choice(seq)</code></td><td>Elige un elemento al azar de una lista o cadena</td><td><code>random.choice(["A","B","C"])</code></td><td><code>"B"</code></td></tr>
+      <tr><td><code>random.choices(seq, k=n)</code></td><td>Elige n elementos <strong>con</strong> repetición</td><td><code>random.choices([1,2,3], k=2)</code></td><td><code>[2, 2]</code></td></tr>
+      <tr><td><code>random.sample(seq, k)</code></td><td>Elige k elementos <strong>sin</strong> repetición</td><td><code>random.sample([1,2,3,4], 2)</code></td><td><code>[3, 1]</code></td></tr>
+      <tr><td><code>random.shuffle(lista)</code></td><td>Mezcla la lista en su lugar (modifica la original)</td><td><code>random.shuffle(cartas)</code></td><td><code>None</code> — modifica directo</td></tr>
+      <tr><td><code>random.uniform(a, b)</code></td><td>Float aleatorio entre a y b</td><td><code>random.uniform(1.0, 10.0)</code></td><td><code>7.231</code></td></tr>
+      <tr><td><code>random.seed(n)</code></td><td>Fija el punto de partida — resultados reproducibles</td><td><code>random.seed(42)</code></td><td>Siempre el mismo resultado</td></tr>
+    </tbody>
+  </table>
+
+  <p class="heading">Ejemplos básicos</p>
+  <pre><code>import random
+
+# Dado de 6 caras
+dado = random.randint(1, 6)
+print(f"Tiraste un {dado}")
+
+# Elegir ganador de una lista
+participantes = ["Ana", "Luis", "María", "Carlos"]
+ganador = random.choice(participantes)
+print(f"El ganador es: {ganador}")
+
+# Mezclar una baraja
+cartas = ["A", "2", "3", "4", "5", "6", "7", "J", "Q", "K"]
+random.shuffle(cartas)
+print(cartas)</code></pre>
+  <pre class="is-output has-text-success mt-1 mb-5">&gt; Tiraste un 4
+&gt; El ganador es: María
+&gt; ['Q', '3', 'A', '7', 'K', '2', '6', '5', 'J', '4']</pre>
+
+  <p class="heading">choice vs sample vs choices</p>
+  <pre><code>numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+random.choice(numeros)          # 1 elemento al azar
+random.sample(numeros, 3)       # 3 elementos SIN repetir → [4, 9, 1]
+random.choices(numeros, k=3)    # 3 elementos CON repetir → [4, 4, 9]</code></pre>
+  <pre class="is-output has-text-success mt-1 mb-5">&gt; 7
+&gt; [4, 9, 1]
+&gt; [4, 4, 9]</pre>
+
+  <hr>
+
+  <article class="message is-info mb-4">
+    <div class="message-header"><p>Algoritmo clásico — número secreto</p></div>
+    <div class="message-body">
+<pre><code>import random
+
+secreto   = random.randint(1, 100)
+intentos  = 0
+
+print("Adiviná el número entre 1 y 100.")
+
+while True:
+    try:
+        intento = int(input("Tu número: "))
+        intentos += 1
+    except ValueError:
+        print("Ingresá un número entero.")
+        continue
+
+    if intento < secreto:
+        print("Más grande.")
+    elif intento > secreto:
+        print("Más chico.")
+    else:
+        print(f"¡Correcto! Lo adivinaste en {intentos} intentos.")
+        break</code></pre>
+<pre class="is-output has-text-success mt-1">&gt; Adiviná el número entre 1 y 100.
+&gt; Tu número: 50  → Más grande.
+&gt; Tu número: 75  → Más chico.
+&gt; Tu número: 63  → ¡Correcto! Lo adivinaste en 3 intentos.</pre>
+    </div>
+  </article>
+
+  <div class="notification is-warning mt-4">
+    <p><strong>💡 Tip — seed():</strong> <code>random.seed(42)</code> hace que los números "aleatorios" sean siempre los mismos. Útil para testear tu código — si el resultado cambia cada vez, es difícil verificar si funciona bien.</p>
+  </div>
+  <div class="notification is-danger mt-3">
+    <p><strong>⚠ shuffle() no devuelve nada:</strong> <code>resultado = random.shuffle(lista)</code> guarda <code>None</code>, no la lista mezclada. <code>shuffle</code> modifica la lista original directamente — no hay que asignarlo.</p>
+  </div>
+</div>
+
 
   <!-- ══════════════════════════════════════════
        INTEGRADOR 1 — CONVERSOR DE TEMPERATURA
@@ -967,6 +1073,7 @@ else:
             <li><a id="nav-errores"     onclick="show('errores')">4 · Manejo de errores</a></li>
             <li><a id="nav-estructuras" onclick="show('estructuras')">5 · Estructuras de datos</a></li>
             <li><a id="nav-funciones"   onclick="show('funciones')">6 · Funciones</a></li>
+            <li><a id="nav-random" onclick="show('random')">7 · Librería random</a></li>
           </ul>
           <p class="menu-label mt-4">Integradores</p>
           <ul class="menu-list">
@@ -982,7 +1089,7 @@ else:
 </div><!-- /is-flex -->
 
 <script>
-  const IDS = ['tipos','cond','bucles','errores','estructuras','funciones','int1','int2','int3'];
+  const IDS = ['tipos','cond','bucles','errores','estructuras','funciones', 'random','int1','int2','int3'];
 
   function show(id) {
     IDS.forEach(function(s) {
