@@ -19,14 +19,15 @@
       display: flex;
       align-items: center;
     }
+    .table-container { overflow-x: auto; -webkit-overflow-scrolling: touch; }
     #aside.is-collapsed { width: 0; opacity: 0; }
     #aside .aside-inner { width: 220px; padding: 1rem 0.75rem; }
 
     #main-content { flex: 1; overflow: auto; }
-    .content-wrap { max-width: 820px; margin: 0 auto; padding: 2rem 1.5rem; }
-
     #main-content .sec { display: none; }
     #main-content .sec.is-active { display: block; animation: fadeIn 0.5s ease; }
+
+    .content-wrap { max-width: 820px; margin: 0 auto; padding: 2rem 1.5rem; }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -145,7 +146,7 @@
   <hr>
   <!-- Operadores matemáticos -->
 <p class="heading">Operadores matemáticos</p>
-<table class="table is-fullwidth is-striped mb-4">
+<table class="table is-fullwidth is-striped mb-5">
   <thead>
     <tr><th>Operador</th><th>Operación</th><th>Ejemplo</th><th>Resultado</th></tr>
   </thead>
@@ -652,7 +653,7 @@ for clave, valor in alumno.items():
 
     <!-- Tabla comparativa -->
     <p class="heading">¿Cuál usar?</p>
-    <table class="table is-fullwidth is-striped">
+    <table class="table is-fullwidth is-striped mb-5">
       <thead><tr><th>Estructura</th><th>Mutable</th><th>Acceso</th><th>Úsala cuando...</th></tr></thead>
       <tbody>
         <tr><td><code>list</code></td><td>✅ Sí</td><td>Por índice numérico</td><td>La colección puede cambiar (agregar, quitar)</td></tr>
@@ -787,21 +788,23 @@ from random import randint  # importás solo lo que necesitás</code></pre>
   </div>
 
   <p class="heading">Métodos principales</p>
-  <table class="table is-fullwidth is-striped mb-5">
-    <thead>
-      <tr><th>Método</th><th>Qué hace</th><th>Ejemplo</th><th>Resultado posible</th></tr>
-    </thead>
-    <tbody>
-      <tr><td><code>random.random()</code></td><td>Float entre 0.0 y 1.0</td><td><code>random.random()</code></td><td><code>0.7342</code></td></tr>
-      <tr><td><code>random.randint(a, b)</code></td><td>Entero entre a y b, <strong>ambos incluidos</strong></td><td><code>random.randint(1, 6)</code></td><td><code>4</code></td></tr>
-      <tr><td><code>random.choice(seq)</code></td><td>Elige un elemento al azar de una lista o cadena</td><td><code>random.choice(["A","B","C"])</code></td><td><code>"B"</code></td></tr>
-      <tr><td><code>random.choices(seq, k=n)</code></td><td>Elige n elementos <strong>con</strong> repetición</td><td><code>random.choices([1,2,3], k=2)</code></td><td><code>[2, 2]</code></td></tr>
-      <tr><td><code>random.sample(seq, k)</code></td><td>Elige k elementos <strong>sin</strong> repetición</td><td><code>random.sample([1,2,3,4], 2)</code></td><td><code>[3, 1]</code></td></tr>
-      <tr><td><code>random.shuffle(lista)</code></td><td>Mezcla la lista en su lugar (modifica la original)</td><td><code>random.shuffle(cartas)</code></td><td><code>None</code> — modifica directo</td></tr>
-      <tr><td><code>random.uniform(a, b)</code></td><td>Float aleatorio entre a y b</td><td><code>random.uniform(1.0, 10.0)</code></td><td><code>7.231</code></td></tr>
-      <tr><td><code>random.seed(n)</code></td><td>Fija el punto de partida — resultados reproducibles</td><td><code>random.seed(42)</code></td><td>Siempre el mismo resultado</td></tr>
-    </tbody>
-  </table>
+    <div class="table-container">
+      <table class="table is-striped mb-5">
+        <thead>
+          <tr><th>Método</th><th>Qué hace</th><th>Ejemplo</th><th>Resultado posible</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>random.random()</code></td><td>Float entre 0.0 y 1.0</td><td><code>random.random()</code></td><td><code>0.7342</code></td></tr>
+          <tr><td><code>random.randint(a, b)</code></td><td>Entero entre a y b, <strong>ambos incluidos</strong></td><td><code>random.randint(1, 6)</code></td><td><code>4</code></td></tr>
+          <tr><td><code>random.choice(seq)</code></td><td>Elige un elemento al azar de una lista o cadena</td><td><code>random.choice(["A","B","C"])</code></td><td><code>"B"</code></td></tr>
+          <tr><td><code>random.choices(seq, k=n)</code></td><td>Elige n elementos <strong>con</strong> repetición</td><td><code>random.choices([1,2,3], k=2)</code></td><td><code>[2, 2]</code></td></tr>
+          <tr><td><code>random.sample(seq, k)</code></td><td>Elige k elementos <strong>sin</strong> repetición</td><td><code>random.sample([1,2,3,4], 2)</code></td><td><code>[3, 1]</code></td></tr>
+          <tr><td><code>random.shuffle(lista)</code></td><td>Mezcla la lista en su lugar (modifica la original)</td><td><code>random.shuffle(cartas)</code></td><td><code>None</code> — modifica directo</td></tr>
+          <tr><td><code>random.uniform(a, b)</code></td><td>Float aleatorio entre a y b</td><td><code>random.uniform(1.0, 10.0)</code></td><td><code>7.231</code></td></tr>
+          <tr><td><code>random.seed(n)</code></td><td>Fija el punto de partida — resultados reproducibles</td><td><code>random.seed(42)</code></td><td>Siempre el mismo resultado</td></tr>
+        </tbody>
+      </table>
+    </div>
 
   <p class="heading">Ejemplos básicos</p>
   <pre><code>import random
